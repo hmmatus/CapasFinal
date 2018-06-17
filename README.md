@@ -1,6 +1,10 @@
 # Final Project 'N-CAPAS'
 
 Bank transfer system developed in Spring Framework.
+<p align="center">
+  <img src="ironbank.png" alt="Iron Bank"
+       width="654" height="450">
+</p>
 
 ## Built With
 

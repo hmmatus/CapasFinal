@@ -1,4 +1,4 @@
-# Final Project 'N-CAPAS-
+# Final Project 'N-CAPAS'
 
 Bank transfer system developed in Spring Framework.
 

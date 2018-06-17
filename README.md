@@ -2,7 +2,7 @@
 
 Bank transfer system developed in Spring Framework.
 <p align="center">
-  <img src="WebContent/imgs/ironbank.png" alt="Iron Bank"
+  <img src="WebContent/resources/imgs/ironbank.png" alt="Iron Bank"
        width="438" height="316">
 </p>
 

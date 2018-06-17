@@ -8,7 +8,7 @@ Bank transfer system developed in Spring Framework.
 
 ## Built With
 
-* [Spring Tools Suite](https://spring.io/tools/sts/all) - The IDE used
+* [Spring Tools Suite](https://spring.io/tools/sts/all) - The IDE we used
 ## Authors
 
 * **Héctor Matus**  - [hmmatus](https://github.com/hmmatus)

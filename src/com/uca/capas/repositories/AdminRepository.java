@@ -1,5 +1,5 @@
 package com.uca.capas.repositories;
 
-public class AdminRepository {
+public interface AdminRepository {
 
 }

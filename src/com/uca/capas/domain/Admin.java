@@ -18,10 +18,36 @@ public class Admin {
 	private Integer idAdmin;
 	
 	@Column (name= "username")
-	private String adUser;
+	private String susername;
 	
 	@Column (name= "pass")
-	private String adPass;
+	private String spassword;
+
+	public Integer getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(Integer idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+	public String getSusername() {
+		return susername;
+	}
+
+	public void setSusername(String susername) {
+		this.susername = susername;
+	}
+
+	public String getSpassword() {
+		return spassword;
+	}
+
+	public void setSpassword(String spassword) {
+		this.spassword = spassword;
+	}
+	
+	
 	
 	
 }

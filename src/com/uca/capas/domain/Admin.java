@@ -18,10 +18,10 @@ public class Admin {
 	private Integer idAdmin;
 	
 	@Column (name= "username")
-	private String adUser;
+	private String susername;
 	
 	@Column (name= "pass")
-	private String adPass;
+	private String spassword;
 	
 	
 }

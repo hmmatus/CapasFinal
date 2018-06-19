@@ -22,6 +22,32 @@ public class Admin {
 	
 	@Column (name= "pass")
 	private String spassword;
+
+	public Integer getIdAdmin() {
+		return idAdmin;
+	}
+
+	public void setIdAdmin(Integer idAdmin) {
+		this.idAdmin = idAdmin;
+	}
+
+	public String getSusername() {
+		return susername;
+	}
+
+	public void setSusername(String susername) {
+		this.susername = susername;
+	}
+
+	public String getSpassword() {
+		return spassword;
+	}
+
+	public void setSpassword(String spassword) {
+		this.spassword = spassword;
+	}
+	
+	
 	
 	
 }

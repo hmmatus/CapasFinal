@@ -35,8 +35,10 @@ CREATE TABLE operacion(
    	monto REAL,
    	concepto VARCHAR(500),
    	id_usuario INT,
+    id_beneficiario INT, 
    	estado INT, --0=Pendiente, 1=Realizada, 2=Rechazada;
-    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario)
+    FOREIGN KEY (id_usuario) REFERENCES usuario(id_usuario),
+    FOREIGN KEY (id_beneficiario) REFERENCES usuario(id_usuario)
 
 );
 

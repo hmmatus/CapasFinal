@@ -11,19 +11,50 @@
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap-reboot.min.css">
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/sweetalert2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
 </head>
 <body>
 <script type="text/javascript">
+$( document ).ready(function() {
+	var a = $('#beneficiario').val();
+	$('#numerocuenta').val(a);
+	
+});
 	function numCuenta(){
 		var a = $('#beneficiario').val();
 		$('#numerocuenta').val(a);
 		
 	}
+	function validateForm(){
+		var x =$( "#beneficiario option:selected" ).text();
+		Swal({
+			  title: '¿Esta seguro de agregar el beneficiario '+x+'?',
+			  type: 'warning',
+			  showCancelButton: true,
+			  confirmButtonText: 'Si',
+			  cancelButtonText: 'No'
+			}).then((result) => {
+			  if (result.value) {
+				  $('#form1').submit();
+			    Swal(
+			      'Agregado con exito'
+			     
+			    )
+			  // For more information about handling dismissals please visit
+			  // https://sweetalert2.github.io/#handling-dismissals
+			  } else if (result.dismiss === Swal.DismissReason.cancel) {
+			    Swal(
+			      'Cancelado'
+			    )
+			  }
+			})
+		
+	}
 </script>
 <div class="container" id="container">
-			<form>
+			<form id="form1" method="post" action="${pageContext.request.contextPath}/agregarBenef" >
 				  <div class="form-group">
 				    <label for="exampleSelect1">Seleccionar Beneficiario</label>
 				    <select class="form-control" name="nombrebenef" onChange="numCuenta()" id="beneficiario">
@@ -35,14 +66,15 @@
 				<div class="form-group" id="cuenta">
 				    <label for="numerocuenta">Numero de cuenta</label>
 				    
-				    <input type="text" class="form-control" value="${beneficiario.username}" name="numerocuenta" id="numerocuenta" aria-describedby="emailHelp" readonly>
+				    <input type="text" class="form-control" value="" name="numerocuenta" id="numerocuenta" aria-describedby="emailHelp" readonly>
 				     <small id="emailHelp" class="form-text text-muted">Numero de cuenta, de tu beneficiario.</small>
-				 
 				   
 				  </div>
 					 
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <button type="button" class="btn btn-primary" onclick="validateForm()">Agregar</button>
+				 
 			</form>
+
 			</div>
 			<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 			<script type="text/javascript" src="resources/js/bootstrap-datepicker.min.js"></script>

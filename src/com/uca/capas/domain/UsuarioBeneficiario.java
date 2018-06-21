@@ -12,8 +12,8 @@ import javax.persistence.Table;
 @Table(schema = "public", name = "usuarioxbeneficiario")
 public class UsuarioBeneficiario {
 	@Id
-	@GeneratedValue(generator = "tareados_code_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "tareaos_code_seq", sequenceName = "tareados.tareados_code_seq")
+	@GeneratedValue(generator = "usuarioxbeneficiario_id_usuarioxbeneficiario_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "usuarioxbeneficiario_id_usuarioxbeneficiario_seq", sequenceName = "public.usuarioxbeneficiario_id_usuarioxbeneficiario_seq")
 	
 	@Column(name = "id_usuarioxbeneficiario")
 	private Integer idUsuarioBeneficiario;
@@ -45,6 +45,12 @@ public class UsuarioBeneficiario {
 	}
 
 	public void setIdBeneficiario(Integer idBeneficiario) {
+		this.idBeneficiario = idBeneficiario;
+	}
+
+	public UsuarioBeneficiario(Integer idUsuario, Integer idBeneficiario) {
+		super();
+		this.idUsuario = idUsuario;
 		this.idBeneficiario = idBeneficiario;
 	}
 	

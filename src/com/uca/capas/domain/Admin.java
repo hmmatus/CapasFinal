@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(schema = "public", name = "admin")
 public class Admin {
 	@Id
-	@GeneratedValue(generator = "proyectodb_code_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "proyectodb_code_seq", sequenceName = "proyectodb.proyectodb_code_seq")
+	@GeneratedValue(generator = "admin_id_admin_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "admin_id_admin_seq", sequenceName = "public.admin_id_admin_seq", initialValue=1, allocationSize=1)
 	
 	@Column(name = "id_admin")
 	private Integer idAdmin;

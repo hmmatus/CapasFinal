@@ -26,7 +26,7 @@ public class Operacion {
 	@Column(name = "tipo_operacion")
 	private Integer tipoOperacion;
 	
-	@DateTimeFormat(pattern = "yyyy/MM/DD")
+	@DateTimeFormat(pattern = "yyyy/MM/DD hh:mm:ss")
 	@Column(name = "fecha")
 	private Calendar fOperacion;
 	
@@ -38,6 +38,9 @@ public class Operacion {
 	
 	@Column (name= "id_usuario")
 	private String idUsuario;
+	
+	@Column(name = "id_beneficiario")
+	private String idBeneficiario;
 	
 	@Column (name= "estado")
 	private Integer estado;
@@ -108,5 +111,29 @@ public class Operacion {
 	public void setEstado(Integer estado) {
 		this.estado = estado;
 	}
+
+	public String getIdBeneficiario() {
+		return idBeneficiario;
+	}
+
+	public void setIdBeneficiario(String idBeneficiario) {
+		this.idBeneficiario = idBeneficiario;
+	}
+	
+	public String getSEstado() {
+		String result="";
+		if(this.estado.equals(0)) {
+			result = "Pendiente";
+		}
+		else if(this.estado.equals(1)) {
+			result="Realizado";
+		}
+		else if(this.estado.equals(2)) {
+			result = "Rechazado";
+		}
+		return result;
+	}
+	
+
 	
 }

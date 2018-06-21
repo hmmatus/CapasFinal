@@ -46,15 +46,15 @@ public class MainController {
 		
 		String nvista ="";
 		Admin a = adminRepository.findBySusernameAndSpassword(user, pass);
-		Usuario u = usuarioRepository.findByUsernameAndPassword(user, pass);
+		//Usuario u = usuarioRepository.findByUsernameAndPassword(user, pass);
 		
 		if(a!=null) {
 			nvista="admin";
 		}
-		else if(u!=null) {
+		/*else if(u!=null) {
 			nvista="cuenta";
 			
-		}
+		}*/
 		else {
 			nvista="index";
 		}

@@ -23,9 +23,17 @@
 <link rel="stylesheet" href="resources/jquery-ui/jquery-ui.css">
 <script type="text/javascript"
 	src="resources/sweetalert/dist/sweetalert.min.js"></script>
+	
+	<!-- Funcion ajax para recargar la pagina -->
+<script type="text/javascript">
+	function llamada(){
+		var fi={"#fechamin"}.val();
+		var fv={"#fechamax"}.val();
+		${"#button"}.load("${pageContext.request.contextPath}/CapasFinal/busqueda?fingre="+fi+"?fvenc="+fv);
+	}
+	
+</script>
 <title>Estado de Cuenta</title>
-
-
 </head>
 <body>
 	<h2>Ingrese un intervalo de fechas:</h2>
@@ -43,7 +51,7 @@
 		<script type="text/javascript">
 				$("#fechamax").datepicker({ dateFormat: 'yyyy/MM/DD' });
 			</script>
-		<br> <input type="submit" class="btn btn-primary">
+		<br> <input type="button" id="button" onclick = "llamada()" class="btn btn-primary">
 	</form>
 	<br>
 	<br>

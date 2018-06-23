@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uca.capas.domain.Operacion;
+import com.uca.capas.domain.UsuarioBeneficiario;
 
 public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	
@@ -17,5 +18,5 @@ public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	
 	//Cuando fingre venga vacio
 	public List<Operacion> findByfOperacionLessThanAndIdUsuario(Calendar fvenc,String idUsuario);
-
+	public Operacion save(Operacion x);
 }

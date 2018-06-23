@@ -6,94 +6,120 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Principal</title>
+<title>Transferencia</title>
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap-reboot.min.css">
-<link rel="stylesheet" href="resources/css/bootstrap-datepicker.standalone.css">
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/sweetalert2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-<script>
+<!--  <script>
 $(document).ready(function () {
 	$('#container .input-group.date').datepicker({
 	    language: "es"
 	});
 	});
+</script>-->
+<script>
+$( document ).ready(function() {
+	$('#submit').prop("disabled",true);
+});
+function validateForm(){
+		var monto =parseInt($('#monto').val());
+		var saldo =parseInt($('#saldo').val());
+		var concepto =$('#concepto').val();
+		var cuenta =$( "#benef option:selected" ).val();
+		  if(monto<=saldo && concepto!=null && concepto.trim() !="" && cuenta!=null){
+				  $('#submit').prop("disabled",false);
+			  }
+		  else if (monto > saldo ) {
+		   	  Swal('El monto es mayor al saldo disponible')
+		   	  
+		  }
+	}
+function validateTrans(){
+	
+	var saldo =$( "#saldo" ).val();
+	var monto =$( "#monto" ).val();
+	var benef =$( "#benef option:selected" ).text();
+	var cuenta =$( "#benef option:selected" ).val();
+	var concepto =$( "#concepto" ).text();
+	Swal({
+		  title: 'Resumen de la transferencia',
+		  type: 'warning',
+		  html:
+			    '<b>Saldo: </b>'+saldo+' <br>'+
+			    '<b>Monto: </b>'+monto+' <br>'+
+			    '<b>Beneficiario: </b>'+benef+' <br>'+
+			    '<b>Cuenta del beneficiario: </b>'+cuenta+' <br>',
+			  showCloseButton: true,
+			  showCancelButton: true,
+			  focusConfirm: false,
+		  showCancelButton: true,
+		  confirmButtonText: 'confirmar',
+		  cancelButtonText: 'cancelar'
+		}).then((result) => {
+		  if (result.value) {
+			  Swal({
+				  title: '¿Esta seguro de realizar la transferencia?',
+				  type: 'warning',
+				  text: '',
+				  showCancelButton: true,
+				  confirmButtonText: 'Si',
+				  cancelButtonText: 'No'
+				}).then((result) => {
+				  if (result.value) {
+					  $('#form1').submit();
+					  Swal('Transaccion realizada con exito')
+					} else if (result.dismiss === Swal.DismissReason.cancel) {
+				    Swal('Cancelado')
+				  }
+				})
+			} else if (result.dismiss === Swal.DismissReason.cancel) {
+		    Swal('Cancelado')
+		  }
+		})
+	
+}
 </script>
 </head>
 <body>
 <div class="container" id="container">
-			<form>
+			<h2>Transferencia de Dinero</h2>
+			<form id="form1" method="post" action="${pageContext.request.contextPath}/agregarTransferencia" >
+			
+			<a class="btn btn-primary" href="${pageContext.request.contextPath}/listaBenef">Agregar Beneficiario</a>
 				  <div class="form-group">
-				    <label for="exampleInputEmail1">Email address</label>
-				    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-				    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+				  
+				    <label for="saldo">Saldo:</label>
+				    <input type="number" class="form-control" name="saldo" id="saldo" value="${usuario.saldo}" readonly>
+				   
 				  </div>
-				  <div class="input-group date mb-3">
-					  <input type="text" class="form-control"><div class="input-group-addon">
-					  <span class="input-group-text"><i class="material-icons">
-						date_range
-						</i></span></div>
-					</div>
 				  <div class="form-group">
-				    <label for="exampleSelect1">Example select</label>
-				    <select class="form-control" id="exampleSelect1">
-				      <option>1</option>
-				      <option>2</option>
-				      <option>3</option>
-				      <option>4</option>
-				      <option>5</option>
+				    <label for="benef">Beneficiario</label>
+				    <select name="benef" class="form-control" id="benef">
+				      <c:forEach var="c" items="${beneficiario}">
+				      <option value="${c.numCuenta}">${c.username}</option>
+				      </c:forEach>
 				    </select>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleSelect2">Example multiple select</label>
-				    <select multiple class="form-control" id="exampleSelect2">
-				      <option>1</option>
-				      <option>2</option>
-				      <option>3</option>
-				      <option>4</option>
-				      <option>5</option>
-				    </select>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleTextarea">Example textarea</label>
-				    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-				  </div>
-				  <div class="form-group">
-				    <label for="exampleInputFile">File input</label>
-				    <input type="file" class="form-control-file" id="exampleInputFile" aria-describedby="fileHelp">
-				    <small id="fileHelp" class="form-text text-muted">This is some placeholder block-level help text for the above input. It's a bit lighter and easily wraps to a new line.</small>
 				  </div>
 				  
-				  <fieldset class="form-group">
-				    <legend>Radio buttons</legend>
-				    <div class="form-check">
-				      <label class="form-check-label">
-				        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios1" value="option1" checked>
-				        Option one is this and that&mdash;be sure to include why it's great
-				      </label>
-				    </div>
-				    <div class="form-check">
-				    <label class="form-check-label">
-				        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios2" value="option2">
-				        Option two can be something else and selecting it will deselect option one
-				      </label>
-				    </div>
-				    <div class="form-check disabled">
-				    <label class="form-check-label">
-				        <input type="radio" class="form-check-input" name="optionsRadios" id="optionsRadios3" value="option3" disabled>
-				        Option three is disabled
-				      </label>
-				    </div>
-				  </fieldset>
-				  <div class="form-check">
-				    <label class="form-check-label">
-				      <input type="checkbox" class="form-check-input">
-				      Check me out
-				    </label>
+				  <div class="form-group">
+				  
+				    <label for="monto">Monto</label>
+				    <input type="number" min="0.00" path="concepto" class="form-control" onblur="validateForm()" name="monto" id="monto" placeholder="0.00" required>
+				   
 				  </div>
-				  <button type="submit" class="btn btn-primary">Submit</button>
+				  <div class="form-group">
+				  
+				    <label for="concepto">Concepto</label>
+				    <input type="text" class="form-control" onchange="validateForm()" name="concepto" id="concepto" required>
+				   
+				  </div>
+				  <button type="button" class="btn btn-primary" onclick="validateTrans()">Realizar Transferencia</button>
+
+				  <!--<button type="submit" class="btn btn-primary">Submit</button> -->
 			</form>
 			</div>
 			<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>

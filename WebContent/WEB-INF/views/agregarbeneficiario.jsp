@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Principal</title>
+<title>Agregar Beneficiario</title>
 <link rel="stylesheet" href="resources/css/style.css">
 <link rel="stylesheet" href="resources/css/bootstrap.min.css">
 <link rel="stylesheet" href="resources/css/bootstrap-reboot.min.css">
@@ -77,7 +77,7 @@ $( document ).ready(function() {
 
 			</div>
 			<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
-			<script type="text/javascript" src="resources/js/bootstrap-datepicker.min.js"></script>
-			<script type="text/javascript" src="resources/js/bootstrap-datepicker.es.min.js"></script>
+			<!--<script type="text/javascript" src="resources/js/bootstrap-datepicker.min.js"></script>
+			<script type="text/javascript" src="resources/js/bootstrap-datepicker.es.min.js"></script>-->
 </body>
 </html>

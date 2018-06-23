@@ -37,10 +37,10 @@ public class Operacion {
 	private String concepto;
 	
 	@Column (name= "id_usuario")
-	private String idUsuario;
+	private Integer idUsuario;
 	
 	@Column(name = "id_beneficiario")
-	private String idBeneficiario;
+	private Integer idBeneficiario;
 	
 	@Column (name= "estado")
 	private Integer estado;
@@ -96,11 +96,11 @@ public class Operacion {
 		this.concepto = concepto;
 	}
 
-	public String getIdUsuario() {
+	public Integer getIdUsuario() {
 		return idUsuario;
 	}
 
-	public void setIdUsuario(String idUsuario) {
+	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
 
@@ -112,11 +112,11 @@ public class Operacion {
 		this.estado = estado;
 	}
 
-	public String getIdBeneficiario() {
+	public Integer getIdBeneficiario() {
 		return idBeneficiario;
 	}
 
-	public void setIdBeneficiario(String idBeneficiario) {
+	public void setIdBeneficiario(Integer idBeneficiario) {
 		this.idBeneficiario = idBeneficiario;
 	}
 	
@@ -132,6 +132,29 @@ public class Operacion {
 			result = "Rechazado";
 		}
 		return result;
+	}
+	public String getSOperacion() {
+		String result="";
+		if(this.tipoOperacion.equals(0)) {
+			result = "Debito";
+		}
+		else if(this.tipoOperacion.equals(1)) {
+			result="Credito";
+		}
+
+		return result;
+	}
+
+	public Operacion(Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto, Integer idUsuario,
+			Integer idBeneficiario, Integer estado) {
+		super();
+		this.tipoOperacion = tipoOperacion;
+		this.fOperacion = fOperacion;
+		this.monto = monto;
+		this.concepto = concepto;
+		this.idUsuario = idUsuario;
+		this.idBeneficiario = idBeneficiario;
+		this.estado = estado;
 	}
 	
 

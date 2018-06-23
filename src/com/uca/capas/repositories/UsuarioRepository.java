@@ -16,6 +16,14 @@ public interface UsuarioRepository extends JpaRepository<Usuario, Integer>{
 					+ "usuarioxbeneficiario ON usuarioxbeneficiario.id_beneficiario = usuario.id_usuario"
 					+ " WHERE usuario.estado=true AND usuarioxbeneficiario.id_usuario =:id_usuario")
 	public List<Usuario> findBeneficiarioByUsuario(@Param("id_usuario") int id_usuario);
+	@Query(nativeQuery =true, 
+			value="SELECT * FROM usuario INNER JOIN "
+					+ "usuarioxbeneficiario ON usuarioxbeneficiario.id_beneficiario = usuario.id_usuario"
+					+ " WHERE usuario.estado=true AND usuarioxbeneficiario.id_usuario !=:id_usuario")
+	public List<Usuario> findBeneficiarioNOTUsuario(@Param("id_usuario") int id_usuario);
+	@Query(nativeQuery =true, 
+			value="SELECT * FROM usuario WHERE id_usuario !=:id_usuario")
+	public List<Usuario> findBeneficiarioNotEqualUsuario(@Param("id_usuario") int id_usuario);
 	public Usuario findByusername(String user);
 	public Usuario findBynumCuenta(String numcuenta);
 	public Usuario findByUsernameAndPassword(String a, String b);

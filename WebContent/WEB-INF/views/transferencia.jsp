@@ -108,7 +108,7 @@ function validateTrans(){
 				  <div class="form-group">
 				  
 				    <label for="monto">Monto</label>
-				    <input type="number" min="0.00" path="concepto" class="form-control" onblur="validateForm()" name="monto" id="monto" placeholder="0.00" required>
+				    <input type="number" min="1.00" path="concepto" class="form-control" onblur="validateForm()" name="monto" id="monto"  required>
 				   
 				  </div>
 				  <div class="form-group">

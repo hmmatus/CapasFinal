@@ -15,13 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.uca.capas.domain.Usuario;
 import com.uca.capas.repositories.AdminRepository;
+import com.uca.capas.repositories.UsuarioRepository;
 
 @Controller
 public class AdminController {
 
 	@Autowired
 	AdminRepository adminRepository;
-
+	@Autowired
+	UsuarioRepository usuarioRepository;
 
 
 	// vista inicial
@@ -35,7 +37,7 @@ public class AdminController {
 	@RequestMapping("/usuarios")
 	public ModelAndView searchUser(@RequestParam(value = "cor") String numCuenta) {
 		ModelAndView mav = new ModelAndView();
-		List<Usuario> usuarios = adminRepository.findBynumCuentaContaining(numCuenta);
+		List<Usuario> usuarios = usuarioRepository.findBynumCuentaContaining(numCuenta);
 		mav.addObject("users", usuarios);
 		mav.setViewName("admin");
 		return mav;
@@ -44,7 +46,7 @@ public class AdminController {
 	@RequestMapping("/todos")
 	public ModelAndView showAll() {
 		ModelAndView mav = new ModelAndView();
-		List<Usuario> usuarios = adminRepository.findAllByOrderByIdUsuarioAsc();
+		List<Usuario> usuarios = usuarioRepository.findAllByOrderByIdUsuarioAsc();
 		mav.addObject("users", usuarios);
 		mav.setViewName("admin");
 		return mav;
@@ -62,12 +64,12 @@ public class AdminController {
 	@RequestMapping(value = "/actualizar",method = RequestMethod.POST)
 	public ModelAndView updateUser(@ModelAttribute(value = "newUser") Usuario user) {
 		ModelAndView mav=new ModelAndView();
-		Usuario user2=adminRepository.findByidUsuario(user.getIdUsuario());
+		Usuario user2=usuarioRepository.findByidUsuario(user.getIdUsuario());
 		user.setfCreacion(user2.getfCreacion());
 		try {
 			/*Integer res = adminRepository.updateUsuario(user.getUsername(), user.getPassword(), user.getNomCompleto(),
 					user.getuEstado(), user.getIdUsuario());*/
-			adminRepository.save(user);
+			usuarioRepository.save(user);
 			}
 			catch(Exception e){
 				e.printStackTrace();
@@ -80,7 +82,7 @@ public class AdminController {
 	@RequestMapping(value = "/editar", method = RequestMethod.GET)
 	public ModelAndView editUser(@RequestParam(value = "ide") Integer id) {
 		ModelAndView mav = new ModelAndView();
-		Usuario user = adminRepository.findByidUsuario(id);
+		Usuario user = usuarioRepository.findByidUsuario(id);
 		mav.addObject("newUser", user);
 		mav.setViewName("edit");
 		return mav;
@@ -95,11 +97,11 @@ public class AdminController {
 		String formatted = format1.format(cal.getTime());
 		try {
 			if(user.getuEstado()==false) {
-				adminRepository.updateOperacion(user.getIdUsuario());
+				usuarioRepository.updateOperacion(user.getIdUsuario());
 			}
 			cal.setTime(format1.parse(formatted));
 			user.setfCreacion(cal);
-			adminRepository.save(user);
+			usuarioRepository.save(user);
 		}
 		catch(Exception e){
 			e.printStackTrace();

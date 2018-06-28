@@ -7,29 +7,29 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<title>Insert title here</title>
+<title>Admin main</title>
 </head>
 <body>
 
 	<div class="input-group">
 		<form action="${pageContext.request.contextPath}/usuarios">
-			<h5>Ingrese el codigo del usuario que desea buscar</h5>
+			<h5>Search user by account code</h5>
 			<input type="text" class="form-control"
-				placeholder="Ingrese un correlativo" aria-label=""
+				placeholder="Insert account code" aria-label=""
 				aria-describedby="basic-addon1" name="cor">
 				<br>
 			<div class="input-group-append">
-				<input class="btn btn-primary" type="submit">
+				<input class="btn btn-primary" type="submit" value="Search">
 			</div>
 		</form>
 	</div>
 	<br>
 	<div class="form-inline">
 	<form action="${pageContext.request.contextPath}/todos">
-		<input type="submit" name="button" class="btn btn-info" value="Mostrar usuarios" style="margin: 35px;">
+		<input type="submit" name="button" class="btn btn-info" value="Show Users" style="margin: 35px;">
 	</form>
 		<form action="${pageContext.request.contextPath}/crear">
-		<input type="submit" for="button" class="btn btn-secondary"  value="Crear nuevo usuario">
+		<input type="submit" for="button" class="btn btn-secondary"  value="New User">
 	</form>
 	</div>
 	<table class="table">
@@ -57,7 +57,7 @@
 					<td><form action="${pageContext.request.contextPath}/editar">
 							<input type="hidden" value="${user.idUsuario}" name="ide"
 								path="ide" readonly>
-								<input type="submit" value="Editar" class="btn btn-success">
+								<input type="submit" value="Edit" class="btn btn-success">
 						</form></td>
 				</tr>
 			</c:forEach>

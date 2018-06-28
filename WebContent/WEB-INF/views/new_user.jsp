@@ -7,7 +7,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
-<title>Crear Usuario</title>
+<title>New User</title>
 <script>
 var d = new Date();
 document.getElementById("demo").value = d;
@@ -15,40 +15,35 @@ document.getElementById("demo").value = d;
 </head>
 <body>
 <div class="page-header">
-  <h1>Create New User</h1>
+  <h1>New User</h1>
 </div>
 <div class="container-fluid">
 <form:form name="form2" method="post"
 		action="${pageContext.request.contextPath}/save"
 		modelAttribute="newUser">
 	<div class="form-group">
-		<label for="username">Username: </label>
-		<form:input type="text" class="form-control" name="username" path="username" placeholder="New Username"/>
+		<form:input type="text" class="form-control" name="username" path="username" placeholder="Username"/>
 	</div>
 		<div class="form-group">
-		<label for="password">Password: </label>
-		<form:input type="text" class="form-control" name="password" path="password" placeholder="New Password"/>
+		<form:input type="text" class="form-control" name="password" path="password" placeholder="Password"/>
 	</div>
 		<div class="form-group">
-		<label for="nomCompleto">Full Name: </label>
-		<form:input type="text" class="form-control" name="nomCompleto" path="nomCompleto" placeholder="Insert Full Name"/>
+		<form:input type="text" class="form-control" name="nomCompleto" path="nomCompleto" placeholder="Name complete"/>
 	</div>
 		<div class="form-group">
-		<label for="numCuenta">Account number</label>
-		<form:input type="text" class="form-control" name="numCuenta" path="numCuenta" placeholder="Insert Account Number"/>
+		<form:input type="text" class="form-control" name="numCuenta" path="numCuenta" placeholder="Account code"/>
 	</div>
 		<div class="form-group">
-		<label for="saldo">Balance: </label>
-		<form:input type="text" class="form-control" name="saldo" path="saldo" placeholder="Insert actual Balance"/>
+		<form:input type="text" class="form-control" name="saldo" path="saldo" placeholder="Balance"/>
 	</div>
 	<form:input type="hidden"  path="fCreacion" id="demo" />
 	<div class="form-check form-check-inline">
-		<label class="form-check-label" for="uEstado">Status:          </label>
-		<form:radiobutton class="form-check-input" name="uEstado" path="uEstado" value="true"/><label class="form-check-label" for="uEstado">Activo </label><br><br>
-		<form:radiobutton class="form-check-input" name="uEstadoi" path="uEstado" value="false"/><label class="form-check-label" for="uEstadoi">Inactivo</label>
+		<label class="form-check-label" for="uEstado">state:</label> </br>
+		<form:radiobutton class="form-check-input" name="uEstado" path="uEstado" value="true"/><label class="form-check-label" for="uEstado">Active </label><br><br>
+		<form:radiobutton class="form-check-input" name="uEstadoi" path="uEstado" value="false"/><label class="form-check-label" for="uEstadoi">Inactive</label>
 		</div>
 		<br>
-	<input type="submit" class="btn btn-primary" value="Create User">
+	<input type="submit" class="btn btn-primary" value="Create user">
 </form:form>
 </div>
 </body>

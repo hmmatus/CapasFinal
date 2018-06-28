@@ -38,10 +38,7 @@ $( document ).ready(function() {
 			}).then((result) => {
 			  if (result.value) {
 				  $('#form1').submit();
-			    Swal(
-			      'Agregado con exito'
-			     
-			    )
+			
 			  // For more information about handling dismissals please visit
 			  // https://sweetalert2.github.io/#handling-dismissals
 			  } else if (result.dismiss === Swal.DismissReason.cancel) {
@@ -74,7 +71,7 @@ $( document ).ready(function() {
 				  <button type="button" class="btn btn-primary" onclick="validateForm()">Agregar</button>
 				 
 			</form>
-
+			<h3>${us}</h3>
 			</div>
 			<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 			<!--<script type="text/javascript" src="resources/js/bootstrap-datepicker.min.js"></script>

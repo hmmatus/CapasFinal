@@ -40,11 +40,20 @@ public class MainController {
 	@Autowired
 	private OperacionRepository operacionRepository;
 	Calendar cal = Calendar.getInstance();
-	Usuario publico = new Usuario(1,"cesar","1234","cesarLima","1234d4",cal,120.00,true);
+	Usuario publico = new Usuario(1,"armando","1234","Armando Lima","12345",cal,144.00,true);
 	
 	
 	@RequestMapping("/index")
 	public ModelAndView initMain() {
+		ModelAndView mv = new ModelAndView();
+		List<Usuario> beneficiario = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario());
+		mv.addObject("usuario", publico);
+		mv.addObject("beneficiario", beneficiario);
+		mv.setViewName("index");
+		return mv;
+	}
+	@RequestMapping("/transfeBenef")
+	public ModelAndView benef() {
 		ModelAndView mv = new ModelAndView();
 		List<Usuario> beneficiario = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario());
 		mv.addObject("usuario", publico);
@@ -71,18 +80,28 @@ public class MainController {
 	public ModelAndView agregarBenef(@RequestParam String numerocuenta) {
 		ModelAndView mv = new ModelAndView();
 		Usuario v = usuarioRepository.findBynumCuenta(numerocuenta);
-		UsuarioBeneficiario a= new UsuarioBeneficiario(publico.getIdUsuario(),v.getIdUsuario());
-
+		//UsuarioBeneficiario a= new UsuarioBeneficiario(publico.getIdUsuario(),v.getIdUsuario());
+		List<Usuario> beneficiario = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario()); //usuarios beneficiarios
+			for(int i=0; i<beneficiario.size();i++) {
+			if (v.getIdUsuario()==beneficiario.get(i).getIdUsuario()) { //comparo si el id que acabo de mandar ya es beneficiario
+				mv.addObject("us","Ese usuario ya es tu beneficiario, escoge otro");
+				List<Usuario> todos = usuarioRepository.findBeneficiarioNotEqualUsuario(publico.getIdUsuario());
+				mv.addObject("usuarios", todos);
+				mv.setViewName("agregarbeneficiario");
+				return mv;
+			}
+			}
+			UsuarioBeneficiario a= new UsuarioBeneficiario(publico.getIdUsuario(),v.getIdUsuario());
 			usuarioBenefRepository.save(a);
 			mv.addObject("resultado", 0);
 			mv.addObject("usuario", publico);
-			List<Usuario> beneficiario = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario());
-			mv.addObject("beneficiario", beneficiario);
+			List<Usuario> beneficiario2 = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario());
+			mv.addObject("beneficiario", beneficiario2);
 			mv.setViewName("transferencia");
 		return mv;
 	}
 	@RequestMapping(value="/agregarTransferencia", method = RequestMethod.POST)
-	public ModelAndView agregarTransferencia(@RequestParam String monto, @RequestParam String concepto, @RequestParam Integer benef) {
+	public ModelAndView agregarTransferencia(@RequestParam String monto, @RequestParam String concepto, @RequestParam String benef) {
 		ModelAndView mv = new ModelAndView();
 		Calendar cal = Calendar.getInstance();
 		Double mont= Double.parseDouble(monto);
@@ -95,9 +114,21 @@ public class MainController {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		Operacion a = new Operacion(0,cal,mont,concepto,publico.getIdUsuario(),benef,0);
+		Usuario beneficiario = usuarioRepository.findBynumCuenta(benef);
+		Operacion a = new Operacion(0,cal,mont,concepto,publico.getIdUsuario(),beneficiario.getIdUsuario(),0);
 		operacionRepository.save(a);
-		mv.setViewName("transferencia");
+		Double nuevoSaldo = publico.getSaldo() - Double.parseDouble(monto);
+		
+		publico.setSaldo(nuevoSaldo);
+		publico.setfCreacion(cal);
+		usuarioRepository.save(publico);
+		System.out.println(beneficiario.getUsername());	
+		mv.addObject("fecha",formatted);
+		mv.addObject("nuevoSaldo",nuevoSaldo);
+		mv.addObject("beneficiario", beneficiario);
+		mv.addObject("concepto",concepto);
+		mv.addObject("monto",monto);
+		mv.setViewName("postTransferencia");
 		return mv;
 	}
 	

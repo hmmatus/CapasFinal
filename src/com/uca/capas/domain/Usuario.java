@@ -17,8 +17,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(schema = "public", name = "usuario")
 public class Usuario {
 	@Id
-	@GeneratedValue(generator = "usuario_id_usuario_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "usuario_id_usuario_seq", sequenceName = "public.usuario_id_usuario_seq",initialValue=1, allocationSize=1)
+	@GeneratedValue(generator = "tareados_code_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "tareaos_code_seq", sequenceName = "tareados.tareados_code_seq",initialValue=1, allocationSize=1)
 	
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
@@ -114,6 +114,7 @@ public class Usuario {
 	}
 	public Usuario() {
 	}
+	
 	public Usuario(Integer idUsuario, String username, String password, String nomCompleto, String numCuenta,
 			Calendar fCreacion, Double saldo, Boolean uEstado) {
 		super();

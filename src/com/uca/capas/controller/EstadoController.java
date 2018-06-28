@@ -24,6 +24,8 @@ public class EstadoController {
 	public ModelAndView estadoInit() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("estado_cuenta");
+		List<Operacion> operaciones=operacionRepo.findAll();
+		mav.addObject("ope",operaciones);
 		return mav;
 	}
 	
@@ -49,7 +51,7 @@ public class EstadoController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			ope = operacionRepo.findByfOperacionBetweenAndIdUsuario(cal,cal2,"00066015");
+			ope = operacionRepo.findByfOperacionBetween(cal,cal2);
 			mav.addObject("ope",ope);
 			mav.setViewName("estado_cuenta");
 			
@@ -62,7 +64,7 @@ public class EstadoController {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			ope = operacionRepo.findByfOperacionLessThanAndIdUsuario(cal2,"00066015");
+			ope = operacionRepo.findByfOperacionLessThan(cal2);
 			mav.addObject("ope",ope);
 			mav.setViewName("estado_cuenta");
 		}
@@ -74,7 +76,7 @@ public class EstadoController {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			ope = operacionRepo.findByfOperacionGreaterThanAndIdUsuario(cal,"00066015");
+			ope = operacionRepo.findByfOperacionGreaterThan(cal);
 			mav.addObject("ope",ope);
 			mav.setViewName("estado_cuenta");
 		}

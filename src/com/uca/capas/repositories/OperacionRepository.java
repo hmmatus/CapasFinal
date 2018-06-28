@@ -6,17 +6,18 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uca.capas.domain.Operacion;
-import com.uca.capas.domain.UsuarioBeneficiario;
 
 public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	
 	//Cuando las 2 fechas no vengan vacias
-	public List<Operacion> findByfOperacionBetweenAndIdUsuario(Calendar fingre,Calendar fvenc,String idUsuario);
+	public List<Operacion> findByfOperacionBetween(Calendar fingre,Calendar fvenc);
 	
 	//Cuando fvenc venga vacio
-	public List<Operacion> findByfOperacionGreaterThanAndIdUsuario(Calendar fingre,String idUsuario);
+	public List<Operacion> findByfOperacionGreaterThan(Calendar fingre);
 	
 	//Cuando fingre venga vacio
-	public List<Operacion> findByfOperacionLessThanAndIdUsuario(Calendar fvenc,String idUsuario);
-	public Operacion save(Operacion x);
+	public List<Operacion> findByfOperacionLessThan(Calendar fvenc);
+	
+	public List<Operacion> findByEstado(Integer num);
+
 }

@@ -17,9 +17,8 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Table(schema = "public", name = "operacion")
 public class Operacion {
 	@Id
-	@GeneratedValue(generator = "operacion_id_operacion_seq", strategy = GenerationType.AUTO)
-	@SequenceGenerator(name = "operacion_id_operacion_seq", sequenceName = "public.operacion_id_operacion_seq",initialValue=1, allocationSize=1)
-	
+	@GeneratedValue(generator = "tareados_code_seq", strategy = GenerationType.AUTO)
+	@SequenceGenerator(name = "tareaos_code_seq", sequenceName = "tareados.tareados_code_seq")
 	@Column(name = "id_operacion")
 	private Integer idOperacion;
 	
@@ -120,31 +119,44 @@ public class Operacion {
 		this.idBeneficiario = idBeneficiario;
 	}
 	
-	public String getSEstado() {
+	public String getsEstado() {
 		String result="";
 		if(this.estado.equals(0)) {
-			result = "Pendiente";
+			result = "Pending";
 		}
 		else if(this.estado.equals(1)) {
-			result="Realizado";
+			result="Done";
 		}
 		else if(this.estado.equals(2)) {
-			result = "Rechazado";
+			result = "Rejected";
 		}
 		return result;
 	}
-	public String getSOperacion() {
+	
+	public String getOTipoOperacion() {
 		String result="";
-		if(this.tipoOperacion.equals(0)) {
-			result = "Debito";
-		}
-		else if(this.tipoOperacion.equals(1)) {
-			result="Credito";
-		}
-
+		if(this.tipoOperacion==0)
+			result="Credit";
+		else if(this.tipoOperacion==1)
+			result="Debit";
+		else
+			result="Transaction";
 		return result;
 	}
 
+	public Operacion(Integer idOperacion, Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto,
+			Integer idUsuario, Integer idBeneficiario, Integer estado) {
+		super();
+		this.idOperacion = idOperacion;
+		this.tipoOperacion = tipoOperacion;
+		this.fOperacion = fOperacion;
+		this.monto = monto;
+		this.concepto = concepto;
+		this.idUsuario = idUsuario;
+		this.idBeneficiario = idBeneficiario;
+		this.estado = estado;
+	}
+	
 	public Operacion(Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto, Integer idUsuario,
 			Integer idBeneficiario, Integer estado) {
 		super();
@@ -156,7 +168,5 @@ public class Operacion {
 		this.idBeneficiario = idBeneficiario;
 		this.estado = estado;
 	}
-	
-
 	
 }

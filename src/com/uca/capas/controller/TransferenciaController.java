@@ -26,7 +26,7 @@ import com.uca.capas.repositories.UsuarioRepository;
 @Controller
 @SessionAttributes("tought")
 
-public class MainController {
+public class TransferenciaController {
 	
 
 	@Autowired

@@ -60,7 +60,7 @@ public class TransferenciaController {
 
 		}
 		else {
-			nvista="mtotransferencia";
+			nvista="index";
 		}
 		
 		System.out.println(nvista);

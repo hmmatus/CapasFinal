@@ -40,16 +40,19 @@ public class MainController {
 	@Autowired
 	private OperacionRepository operacionRepository;
 	Calendar cal = Calendar.getInstance();
-	Usuario publico = new Usuario(1,"armando","1234","Armando Lima","12345",cal,144.00,true);
+	Usuario publico = new Usuario();
 	
 	
 	@RequestMapping("/index")
 	public ModelAndView initMain() {
 		ModelAndView mv = new ModelAndView();
-		List<Usuario> beneficiario = usuarioRepository.findBeneficiarioByUsuario(publico.getIdUsuario());
-		mv.addObject("usuario", publico);
-		mv.addObject("beneficiario", beneficiario);
 		mv.setViewName("index");
+		return mv;
+	}
+	@RequestMapping("/cuenta")
+	public ModelAndView cuenta() {
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("cuenta");
 		return mv;
 	}
 	@RequestMapping("/validate")
@@ -60,6 +63,13 @@ public class MainController {
 		Usuario u = usuarioRepository.findByUsernameAndPassword(user, pass);
 		if(a!=null) {
 			nvista="admin";
+			publico.setIdUsuario(u.getIdUsuario());
+			publico.setNomCompleto(u.getNomCompleto());
+			publico.setNumCuenta(u.getNumCuenta());
+			publico.setPassword(u.getPassword());
+			publico.setSaldo(u.getSaldo());
+			publico.setfCreacion(u.getfCreacion());
+			publico.setuEstado(u.getuEstado());
 		}
 		else if(u!=null) {
 			if(!u.getuEstado()) {
@@ -67,14 +77,20 @@ public class MainController {
 			}
 			else {
 				nvista="cuenta";
+				publico.setIdUsuario(u.getIdUsuario());
+				publico.setNomCompleto(u.getNomCompleto());
+				publico.setNumCuenta(u.getNumCuenta());
+				publico.setPassword(u.getPassword());
+				publico.setSaldo(u.getSaldo());
+				publico.setfCreacion(u.getfCreacion());
+				publico.setuEstado(u.getuEstado());
 			}
-
 		}
 		else {
 			nvista="index";
 		}
 		
-		System.out.println(nvista);
+		//System.out.println(nvista);
 		mav.setViewName(nvista);
 
 		return mav;

@@ -86,6 +86,7 @@ function validateTrans(){
 </head>
 <body>
 <div class="container" id="container">
+<a class="btn btn-primary" href="${pageContext.request.contextPath}/cuenta"> Regresar</a>
 			<h2>Transferencia de Dinero</h2>
 			<form id="form1" method="post" action="${pageContext.request.contextPath}/agregarTransferencia" >
 			

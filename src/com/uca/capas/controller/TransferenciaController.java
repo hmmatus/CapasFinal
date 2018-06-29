@@ -38,37 +38,6 @@ public class TransferenciaController {
 	@Autowired
 	private OperacionRepository operacionRepository;
 	
-	
-	
-	
-	@RequestMapping("/validate2")
-	public ModelAndView validate(@RequestParam String user, @RequestParam String pass){
-		ModelAndView mav = new ModelAndView();
-		String nvista ="";
-		Admin a = adminRepository.findBySusernameAndSpassword(user, pass);
-		Usuario u = usuarioRepository.findByUsernameAndPassword(user, pass);
-		if(a!=null) {
-			nvista="admin";
-		}
-		else if(u!=null) {
-			if(!u.getuEstado()) {
-				nvista="index";
-			}
-			else {
-				nvista="cuenta";
-			}
-
-		}
-		else {
-			nvista="index";
-		}
-		
-		System.out.println(nvista);
-		mav.setViewName(nvista);
-
-		return mav;
-	}
-	
 	@RequestMapping("/pendienteTrans")
 	public ModelAndView updateTrans(){
 		ModelAndView mav = new ModelAndView();

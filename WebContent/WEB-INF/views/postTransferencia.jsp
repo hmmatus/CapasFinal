@@ -24,7 +24,7 @@
 		<h3>Monto: ${monto}</h3>
 		<h3>Concepto: ${concepto}</h3>
 		<h3>Fecha de transferencia: ${fecha}</h3>
-		<a class="btn btn-primary" href="${pageContext.request.contextPath}/index"> Regresar</a>
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/cuenta"> Regresar</a>
 		
 	</div>
 </body>

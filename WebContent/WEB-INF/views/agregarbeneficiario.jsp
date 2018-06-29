@@ -69,6 +69,7 @@ $( document ).ready(function() {
 				  </div>
 					 
 				  <button type="button" class="btn btn-primary" onclick="validateForm()">Agregar</button>
+				  <a class="btn btn-light" href="${pageContext.request.contextPath}/cuenta"> Cancelar</a>
 				 
 			</form>
 			<h3>${us}</h3>

@@ -6,39 +6,37 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="stylesheet" href="resources/css/bootstrap.css">
+<link rel="stylesheet" href="resources/css/style.css">
+<link rel="stylesheet" href="resources/css/bootstrap.min.css">
+<link rel="stylesheet" href="resources/css/bootstrap-reboot.min.css">
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/sweetalert2.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 <script type="text/javascript">
-	function llamada() {
-		var fi = ("#fechamin").val();
-		var fv = ("#fechamax").val();
-		$("#div1").load(
-				"${pageContext.request.contextPath}/Estado/busqueda?fingre="
-						+ fi + "?fvenc=" + fv + "");
-	}
+$(document).ready(function () {
+	 $('#fechamin').datepicker({
+         uiLibrary: 'bootstrap4'
+     });
+	$('#fechamax').datepicker({
+		uiLibrary: 'bootstrap4'
+	});
+	});
+
 </script>
 <title>Operation Status</title>
 </head>
 <body>
-	<div id="div1">
+<div class="container" id="container">
+
 		<h2>Insert a Date's range:</h2>
 		<form action="${pageContext.request.contextPath}/busqueda" id="fingre">
 			<h4>Since:</h4>
 			<input type="text" id="fechamin" name="fingre" class="form-control"
 				placeholder="Begin Date">
-			<script type="text/javascript">
-				$("#fechamin").datepicker({
-					dateFormat : 'yy/MM/DD'
-				});
-			</script>
-
 			<h4>Until:</h4>
 			<input type="text" name="fvenc" id="fechamax" class="form-control"
 				placeholder="End Date">
-			<script type="text/javascript">
-				$("#fechamax").datepicker({
-					dateFormat : 'yy/MM/DD'
-				});
-			</script>
 			 <input type="submit" id="button" class="btn btn-primary"
 				value="Send">
 		</form>
@@ -77,5 +75,10 @@
 			</tbody>
 		</table>
 	</div>
+	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
+			 <script  type="text/javascript" src="resources/js/datepickerB4.min.js"></script>
+    <link href="resources/css/datepickergijgoB4.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/js/gijgo.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/gijgo@1.9.6/css/gijgo.min.css" rel="stylesheet" type="text/css" />
 </body>
 </html>

@@ -41,7 +41,7 @@ public class TransferenciaController {
 	@RequestMapping("/pendienteTrans")
 	public ModelAndView updateTrans(){
 		ModelAndView mav = new ModelAndView();
-		List<Operacion> o = operacionRepository.findByEstado(2);
+		List<Operacion> o = operacionRepository.findByEstado(0);
 		
 		
 		mav.addObject("operacion", o);

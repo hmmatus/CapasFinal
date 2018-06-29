@@ -19,5 +19,6 @@ public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	public List<Operacion> findByfOperacionLessThan(Calendar fvenc);
 	
 	public List<Operacion> findByEstado(Integer num);
+	public List<Operacion> findByIdUsuario(Integer num);
 
 }

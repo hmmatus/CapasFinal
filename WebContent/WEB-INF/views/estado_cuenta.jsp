@@ -17,11 +17,11 @@
 $(document).ready(function () {
 	 $('#fechamin').datepicker({
          uiLibrary: 'bootstrap4',
-        	 format: 'yyyy-mm-dd'
+        	 format: 'dd-mm-yyyy'
      });
 	$('#fechamax').datepicker({
 		uiLibrary: 'bootstrap4',
-       	 format: 'yyyy-mm-dd'
+       	 format: 'dd-mm-yyyy'
 	});
 	});
 
@@ -76,8 +76,9 @@ $(document).ready(function () {
 				</c:forEach>
 			</tbody>
 		</table>
+		<a class="btn btn-primary" href="${pageContext.request.contextPath}/cuenta"> Regresar</a>
 	</div>
-	<a class="btn btn-primary" href="${pageContext.request.contextPath}/cuenta"> Regresar</a>
+	
 	<script type="text/javascript" src="resources/js/bootstrap.min.js"></script>
 			 <script  type="text/javascript" src="resources/js/datepickerB4.min.js"></script>
     <link href="resources/css/datepickergijgoB4.min.css" rel="stylesheet" type="text/css" />

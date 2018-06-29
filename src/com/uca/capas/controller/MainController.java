@@ -185,7 +185,7 @@ public class MainController {
 	public ModelAndView estadoInit() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("estado_cuenta");
-		List<Operacion> operaciones=operacionRepo.findAll();
+		List<Operacion> operaciones=operacionRepo.findByIdUsuario(publico.getIdUsuario());
 		mav.addObject("ope",operaciones);
 		return mav;
 	}
@@ -197,7 +197,7 @@ public class MainController {
 		List<Operacion> ope;
 		Calendar cal = Calendar.getInstance();
 		Calendar cal2 = Calendar.getInstance();
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm");
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 		//Si los dos no vienen vacios
 		if(!fingre.equals("") && !fvenc.equals("")) {
 			try {

@@ -23,6 +23,9 @@
 <form id="form2" method="post" action="${pageContext.request.contextPath}/estado" >
 	<button type="submit" class="btn btn-light">Estado de cuenta</button>
 </form>
+<form id="form3" method="post" action="${pageContext.request.contextPath}/pendienteTrans" >
+	<button type="submit" class="btn btn-light">Transferencias pendientes</button>
+</form>
 </div>
 </body>
 </html>

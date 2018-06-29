@@ -23,9 +23,6 @@
 $(document).on('click', '#btn-aceptar', function(e) {
     e.preventDefault();
     
-    
- 
-    
     swal({
     	  title: 'Estas seguro?',
     	  text: "Una vez aceptada la transaccion no se puede revertir!",
@@ -84,7 +81,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
 <div class="container">
 	<h1>Mantenimiento de transferencias</h1>
 	<hr>
-	<p>Este listado de transferencias requiere su acción.<p>
+	<p>Este listado de transferencias requiere su accion.<p>
 	<br>
 	<table class="table table-hover">
     <thead class="thead-light">
@@ -135,28 +132,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
 				</tr>
 			</c:forEach>
 			
-			
-			<tr>
-				<td>SRDVO0051</td>
-				<td>Sir Davos</td>
-				<td>$500</td>
-				<td>Pago de armas para el ejercito del norte.</td>
-				<td>06/18/12</td>
-				<td>$500</td>
-				<td>$500</td>
-				<td><button class="btn btn-success">Aceptar</button>
-				<td><button class="btn btn-danger">Rechazar</button>
-			</tr><tr>
-				<td>SRDVO0051</td>
-				<td>Sir Davos</td>
-				<td>$500</td>
-				<td>Pago de armas para el ejercito del norte.</td>
-				<td>06/18/12</td>
-				<td>$500</td>
-				<td>$500</td>
-				<td><button class="btn btn-success">Aceptar</button>
-				<td><button class="btn btn-danger">Rechazar</button>
-			</tr>			
+		
 		    
     </tbody>
   </table>

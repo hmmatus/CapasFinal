@@ -53,8 +53,8 @@ $(document).on('click', '#btn-rechazar', function(e) {
  
     
     swal({
-    	  title: 'Esá seguro?',
-    	  text: "Una vez rechazada la transacción, no volverá a aparecer!",
+    	  title: 'Esta seguro?',
+    	  text: "Una vez rechazada la transacci�n, no volverá a aparecer!",
     	  type: 'warning',
     	  showCancelButton: true,
     	  confirmButtonColor: '#3085d6',
@@ -91,7 +91,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
         <th>Monto</th>
         <th>Concepto</th>
         <th>Fecha</th>
-        <th>Saldo</th>
+
         <th>Estado</th>
         <th>Accion</th>
         <th></th>
@@ -102,13 +102,14 @@ $(document).on('click', '#btn-rechazar', function(e) {
 			
 	      <c:forEach var="c" items="${operacion}">
 				<tr>
-					<td>${c.idOperacion}</td>
-					<td>${c.tipoOperacion}</td>
-					<td>${c.fechaOperacion}</td>
-					<td>${c.monto}</td>
-					<td>${c.concepto}</td>
-					<td>${c.idUsuario}</td>
-					<td>${c.estado}</td>
+				<td>${c.idUsuario.username}</td>
+				<td>${c.idUsuario.numCuenta}</td>
+				<td>${c.monto}</td>
+				<td>${c.concepto}</td>
+				<td>${c.fechaOperacion}</td>
+				
+					
+					<td>${c.sEstado}</td>
 				
 				<td>
 					<form id="f-aceptar" method="post" action="${pageContext.request.contextPath}/accept">

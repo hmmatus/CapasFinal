@@ -93,6 +93,49 @@ public class MainController {
 		return mav;
 	}
 	
+	@RequestMapping("/pendienteTrans")
+	public ModelAndView updateTrans(){
+		ModelAndView mav = new ModelAndView();
+		//List<Operacion> o = operacionRepository.findByEstado(0);
+		
+		List<Operacion> o = operacionRepository.findByEstadoAndIdBeneficiario(0,publico);
+
+		mav.addObject("operacion", o);		
+		mav.setViewName("mtotransferencia");
+
+		return mav;
+	}
+	
+	@RequestMapping("/accept")
+	public ModelAndView acceptTrans(@RequestParam String id){
+		ModelAndView mav = new ModelAndView();
+		Operacion o = operacionRepository.findOne(Integer.parseInt(id));
+		o.setEstado(1);
+	
+		operacionRepository.saveAndFlush(o);
+		//List<Operacion> o1 = operacionRepository.findByEstado(0);
+		List<Operacion> o1 = operacionRepository.findByEstadoAndIdBeneficiario(0,publico);
+		
+		mav.addObject("operacion", o1);		
+		mav.setViewName("mtotransferencia");
+		return mav;
+	}
+	
+	@RequestMapping("/deny")
+	public ModelAndView denyTrans(@RequestParam String id_r){
+		ModelAndView mav = new ModelAndView();
+		Operacion o = operacionRepository.findOne(Integer.parseInt(id_r));
+		o.setEstado(2);
+		operacionRepository.saveAndFlush(o);
+		
+		//List<Operacion> o2 = operacionRepository.findByEstado(0);
+		List<Operacion> o2 = operacionRepository.findByEstadoAndIdBeneficiario(0,publico);
+		mav.addObject("operacion", o2);		
+		mav.setViewName("mtotransferencia");
+
+		return mav;
+	}
+	
 	@RequestMapping("/transfeBenef")
 	public ModelAndView benef() {
 		ModelAndView mv = new ModelAndView();

@@ -90,8 +90,11 @@ public class MainController {
 		}
 		else {
 			nvista="index";
+			mav.addObject("state", 0);
+
+
 		}
-		
+
 		//System.out.println(nvista);
 		mav.setViewName(nvista);
 

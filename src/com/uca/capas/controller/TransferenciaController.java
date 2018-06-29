@@ -42,11 +42,7 @@ public class TransferenciaController {
 	public ModelAndView updateTrans(){
 		ModelAndView mav = new ModelAndView();
 		List<Operacion> o = operacionRepository.findByEstado(0);
-		
-		
-		mav.addObject("operacion", o);
-
-		
+		mav.addObject("operacion", o);		
 		mav.setViewName("mtotransferencia");
 
 		return mav;
@@ -59,8 +55,10 @@ public class TransferenciaController {
 		o.setEstado(1);
 	
 		operacionRepository.saveAndFlush(o);
-		System.out.println("Loco");
-
+		List<Operacion> o1 = operacionRepository.findByEstado(0);
+		//List<Operacion> o1 = operacionRepository.findByEstadoAndIdBeneficiario(0,3);
+		
+		mav.addObject("operacion", o1);		
 		mav.setViewName("mtotransferencia");
 		return mav;
 	}
@@ -72,9 +70,8 @@ public class TransferenciaController {
 		o.setEstado(2);
 		operacionRepository.saveAndFlush(o);
 		
-		//mav.addObject("operacion", o);
-
-		
+		List<Operacion> o2 = operacionRepository.findByEstado(0);
+		mav.addObject("operacion", o2);		
 		mav.setViewName("mtotransferencia");
 
 		return mav;

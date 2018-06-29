@@ -18,12 +18,12 @@
 <body>
 	<div class="container" id="container">
 	<h1>Resumen final de la transferencia</h1>
-		<h3>Saldo: ${nuevoSaldo}</h3>
-		<h3>Beneficiario: ${beneficiario.username}</h3>
-		<h3>Cuenta de beneficiario: ${beneficiario.numCuenta}</h3>
-		<h3>Monto: ${monto}</h3>
-		<h3>Concepto: ${concepto}</h3>
-		<h3>Fecha de transferencia: ${fecha}</h3>
+		<h4>Saldo: ${nuevoSaldo}</h4>
+		<h4>Beneficiario: ${beneficiario.username}</h4>
+		<h4>Cuenta de beneficiario: ${beneficiario.numCuenta}</h4>
+		<h4>Monto: ${monto}</h4>
+		<h4>Concepto: ${concepto}</h4>
+		<h4>Fecha de transferencia: ${fecha}</h4>
 		<a class="btn btn-primary" href="${pageContext.request.contextPath}/cuenta"> Regresar</a>
 		
 	</div>

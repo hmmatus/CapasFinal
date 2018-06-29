@@ -161,7 +161,7 @@ public class MainController {
 			e1.printStackTrace();
 		}
 		Usuario beneficiario = usuarioRepository.findBynumCuenta(benef);
-		Operacion a = new Operacion(0,cal,mont,concepto,publico,beneficiario,0);
+		Operacion a = new Operacion(1,cal,mont,concepto,publico,beneficiario,0);
 		operacionRepository.save(a);
 		Double nuevoSaldo = publico.getSaldo() - Double.parseDouble(monto);
 		

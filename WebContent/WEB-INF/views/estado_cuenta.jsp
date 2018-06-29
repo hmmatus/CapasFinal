@@ -55,9 +55,9 @@ $(document).ready(function () {
 					<th>Operation Type</th>
 					<th>Operation Date</th>
 					<th>Balance</th>
-					<th>Operacion Concept</th>
+					<th>Operation Concept</th>
 					<th>User</th>
-					<th>Benefit</th>
+					<th>User Account</th>
 					<th>Status</th>
 				</tr>
 			</thead>
@@ -69,8 +69,17 @@ $(document).ready(function () {
 						<td><c:out value="${ope.fechaOperacion}"></c:out></td>
 						<td><c:out value="${ope.monto}"></c:out></td>
 						<td><c:out value="${ope.concepto}"></c:out></td>
-						<td><c:out value="${ope.idUsuario.username}"></c:out></td>
-						<td><c:out value="${ope.idBeneficiario.username}"></c:out></td>
+						<c:choose>
+  							<c:when test="${ope.OTipoOperacion=='Credit'}">
+  								<td>Receive from: <c:out value="${ope.idBeneficiario.username}"></c:out></td>
+								<td>Receive from:<c:out value="${ope.idBeneficiario.numCuenta}"></c:out></td>
+  							</c:when> 
+  							<c:otherwise>
+  								<td>Transfer to: <c:out value="${ope.idBeneficiario.username}"></c:out></td>
+								<td>Transfer to: <c:out value="${ope.idBeneficiario.numCuenta}"></c:out></td>
+  							</c:otherwise>
+						</c:choose>
+						
 						<td><c:out value="${ope.sEstado}"></c:out></td>
 					</tr>
 				</c:forEach>

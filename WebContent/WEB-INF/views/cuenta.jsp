@@ -13,8 +13,29 @@
 <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript" src="resources/js/sweetalert2.js"></script>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script>
+function signOut(){
+	Swal({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes!'
+		}).then((result) => {
+		  if (result.value) {
+		
+		    		$('#form4').submit();
+		    
+		  }
+		})
+
+	}
+</script>
 </head>
 <body>
+
 <div class="container" id="container">
 <h1>Mi cuenta</h1>
 <form id="form1" method="post" action="${pageContext.request.contextPath}/transfeBenef" >
@@ -29,6 +50,11 @@
 <form id="form3" method="post" action="${pageContext.request.contextPath}/pendienteTrans" >
 	<button type="submit" class="btn btn-info">Transferencias pendientes</button>
 
+</form>
+<br>
+<form id="form4" method="post" action="${pageContext.request.contextPath}/index" >
+	<button type="button" class="btn btn-info" onclick="signOut()">Sign out</button>
+	
 </form>
 <br>
 </div>

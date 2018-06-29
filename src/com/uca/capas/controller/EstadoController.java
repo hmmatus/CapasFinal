@@ -16,7 +16,7 @@ import com.uca.capas.repositories.OperacionRepository;
 @Controller
 public class EstadoController {
 	
-	@Autowired
+	/*@Autowired
 	public OperacionRepository operacionRepo;
 	
 	
@@ -88,6 +88,6 @@ public class EstadoController {
 		
 		return mav;
 		
-	}
+	}*/
 
 }

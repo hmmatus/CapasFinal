@@ -64,6 +64,7 @@ public class MainController {
 		if(a!=null) {
 			nvista="admin";
 			publico.setIdUsuario(u.getIdUsuario());
+			publico.setUsername(u.getUsername());
 			publico.setNomCompleto(u.getNomCompleto());
 			publico.setNumCuenta(u.getNumCuenta());
 			publico.setPassword(u.getPassword());
@@ -78,6 +79,7 @@ public class MainController {
 			else {
 				nvista="cuenta";
 				publico.setIdUsuario(u.getIdUsuario());
+				publico.setUsername(u.getUsername());
 				publico.setNomCompleto(u.getNomCompleto());
 				publico.setNumCuenta(u.getNumCuenta());
 				publico.setPassword(u.getPassword());
@@ -175,7 +177,79 @@ public class MainController {
 		mv.setViewName("postTransferencia");
 		return mv;
 	}
+	@Autowired
+	public OperacionRepository operacionRepo;
 	
+	
+	@RequestMapping("/estado")
+	public ModelAndView estadoInit() {
+		ModelAndView mav=new ModelAndView();
+		mav.setViewName("estado_cuenta");
+		List<Operacion> operaciones=operacionRepo.findAll();
+		mav.addObject("ope",operaciones);
+		return mav;
+	}
+	
+	@RequestMapping("/busqueda")
+	public ModelAndView busqueda(@RequestParam(value = "fingre") String fingre,
+			@RequestParam(value = "fvenc") String fvenc) {
+		ModelAndView mav = new ModelAndView();
+		List<Operacion> ope;
+		Calendar cal = Calendar.getInstance();
+		Calendar cal2 = Calendar.getInstance();
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-dd-mm");
+		//Si los dos no vienen vacios
+		if(!fingre.equals("") && !fvenc.equals("")) {
+			try {
+				cal.setTime(sdf.parse(fingre));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			try {
+				cal2.setTime(sdf.parse(fvenc));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ope = operacionRepo.findByfOperacionBetween(cal,cal2);
+			mav.addObject("ope",ope);
+			mav.setViewName("estado_cuenta");
+			
+		}
+		//Si fingre viene vacio
+		else if(fingre.equals("") && !fvenc.equals("")) {
+			try {
+				cal2.setTime(sdf.parse(fvenc));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			ope = operacionRepo.findByfOperacionLessThan(cal2);
+			mav.addObject("ope",ope);
+			mav.setViewName("estado_cuenta");
+		}
+		//Si fvenc viene vacio
+		else if(!fingre.equals("") && fvenc.equals("")) {
+			try {
+				cal.setTime(sdf.parse(fingre));
+			} catch (ParseException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			ope = operacionRepo.findByfOperacionGreaterThan(cal);
+			mav.addObject("ope",ope);
+			mav.setViewName("estado_cuenta");
+		}
+		//En caso que todo falle
+		else {
+			mav.addObject("error","El formato de busqueda no es valido");
+			mav.setViewName("estado_cuenta");
+		}
+		
+		return mav;
+		
+	}
 	
 
 }

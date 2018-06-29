@@ -168,5 +168,7 @@ public class Operacion {
 		this.idBeneficiario = idBeneficiario;
 		this.estado = estado;
 	}
+	public Operacion() {
 	
+	}
 }

@@ -134,7 +134,7 @@ public class MainController {
 		o.setEstado(2);
 		
 		
-		o.getIdUsuario().setSaldo(o.getIdUsuario().getSaldo()-o.getMonto());
+		o.getIdUsuario().setSaldo(o.getIdUsuario().getSaldo()+o.getMonto());
 		operacionRepository.saveAndFlush(o);
 		usuarioRepository.saveAndFlush(o.getIdUsuario());
 		

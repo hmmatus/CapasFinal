@@ -9,26 +9,76 @@
 <title>Principal</title>
 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 </head>
+
+<script>
+$("#btnLogin").click(function(event) {
+
+    //Fetch form to apply custom Bootstrap validation
+    var form = $("#formLogin")
+
+    if (form[0].checkValidity() === false) {
+      event.preventDefault()
+      event.stopPropagation()
+    }
+    
+    form.addClass('was-validated');
+  });
+
+</script>
 <body>
-<div class="container">
-<h1>Iron Bank</h1>
 
-<form method="post" action="${pageContext.request.contextPath}/validate">
-<h5>User: </h5>
-<input type="text" name="user">
 
-<h5>Password: </h5>
-<input type="password" name="pass">
 
-<input type="submit" value="Ingresar">
-</form>
+<div class="container py-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="text-center text-white mb-4">Iron Bank</h2>
+            <div class="row">
+                <div class="col-md-6 mx-auto">
 
+                    <!-- form card login -->
+                    <div class="card rounded-0">
+                        <div class="card-header">
+                            <h3 class="mb-0">Iron Bank</h3>
+                        </div>
+                        <div class="card-body">
+                            <form class="form" role="form" autocomplete="off" id="formLogin" novalidate="" method="POST"  action="${pageContext.request.contextPath}/validate">
+                                <div class="form-group">
+                                    <label for="uname1">Username</label>
+                                    <input type="text" class="form-control form-control-lg rounded-0" name="user" id="uname1" required>
+                                    <div class="invalid-feedback">Oops, you missed this one.</div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Password</label>
+                                    <input type="password" class="form-control form-control-lg rounded-0" name="pass" id="pwd1" required autocomplete="new-password">
+                                    <div class="invalid-feedback">Enter your password too!</div>
+                                </div>
+                               
+                                <button type="submit" class="btn btn-success btn-lg float-right" id="btnLogin">Ingresar</button>
+                            </form>
+                        </div>
+                        <!--/card-block-->
+                    </div>
+                    <!-- /form card login -->
+
+                </div>
+
+
+            </div>
+            <!--/row-->
+
+        </div>
+        <!--/col-->
+    </div>
+    <!--/row-->
 </div>
+<!--/container-->
+
+
 </body>
 </html>

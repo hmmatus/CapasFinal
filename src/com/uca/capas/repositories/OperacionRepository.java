@@ -21,5 +21,7 @@ public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	
 	public List<Operacion> findByEstado(Integer num);
 	public List<Operacion> findByIdUsuario(Usuario num);
+	 public List<Operacion> findByEstadoAndIdBeneficiario(Integer num,Usuario num2);
+
 
 }

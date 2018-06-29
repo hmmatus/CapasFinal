@@ -111,8 +111,14 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		Operacion o = operacionRepository.findOne(Integer.parseInt(id));
 		o.setEstado(1);
-	
+		
+		
+		
+		o.getIdBeneficiario().setSaldo(o.getIdBeneficiario().getSaldo()+o.getMonto());
 		operacionRepository.saveAndFlush(o);
+		usuarioRepository.saveAndFlush(o.getIdBeneficiario());
+
+		
 		//List<Operacion> o1 = operacionRepository.findByEstado(0);
 		List<Operacion> o1 = operacionRepository.findByEstadoAndIdBeneficiario(0,publico);
 		
@@ -126,7 +132,11 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		Operacion o = operacionRepository.findOne(Integer.parseInt(id_r));
 		o.setEstado(2);
+		
+		
+		o.getIdUsuario().setSaldo(o.getIdUsuario().getSaldo()-o.getMonto());
 		operacionRepository.saveAndFlush(o);
+		usuarioRepository.saveAndFlush(o.getIdUsuario());
 		
 		//List<Operacion> o2 = operacionRepository.findByEstado(0);
 		List<Operacion> o2 = operacionRepository.findByEstadoAndIdBeneficiario(0,publico);

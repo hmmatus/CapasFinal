@@ -5,9 +5,12 @@ import java.util.Calendar;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -34,12 +37,14 @@ public class Operacion {
 	
 	@Column (name= "concepto")
 	private String concepto;
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_usuario", referencedColumnName = "id_usuario")
+	private Usuario idUsuario;
 	
-	@Column (name= "id_usuario")
-	private Integer idUsuario;
-	
-	@Column(name = "id_beneficiario")
-	private Integer idBeneficiario;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "id_beneficiario", referencedColumnName = "id_usuario")
+	private Usuario idBeneficiario;
 	
 	@Column (name= "estado")
 	private Integer estado;
@@ -95,14 +100,6 @@ public class Operacion {
 		this.concepto = concepto;
 	}
 
-	public Integer getIdUsuario() {
-		return idUsuario;
-	}
-
-	public void setIdUsuario(Integer idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-
 	public Integer getEstado() {
 		return estado;
 	}
@@ -111,14 +108,6 @@ public class Operacion {
 		this.estado = estado;
 	}
 
-	public Integer getIdBeneficiario() {
-		return idBeneficiario;
-	}
-
-	public void setIdBeneficiario(Integer idBeneficiario) {
-		this.idBeneficiario = idBeneficiario;
-	}
-	
 	public String getsEstado() {
 		String result="";
 		if(this.estado.equals(0)) {
@@ -144,8 +133,24 @@ public class Operacion {
 		return result;
 	}
 
+	public Usuario getIdUsuario() {
+		return idUsuario;
+	}
+
+	public void setIdUsuario(Usuario idUsuario) {
+		this.idUsuario = idUsuario;
+	}
+
+	public Usuario getIdBeneficiario() {
+		return idBeneficiario;
+	}
+
+	public void setIdBeneficiario(Usuario idBeneficiario) {
+		this.idBeneficiario = idBeneficiario;
+	}
+
 	public Operacion(Integer idOperacion, Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto,
-			Integer idUsuario, Integer idBeneficiario, Integer estado) {
+			Usuario idUsuario, Usuario idBeneficiario, Integer estado) {
 		super();
 		this.idOperacion = idOperacion;
 		this.tipoOperacion = tipoOperacion;
@@ -157,8 +162,8 @@ public class Operacion {
 		this.estado = estado;
 	}
 	
-	public Operacion(Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto, Integer idUsuario,
-			Integer idBeneficiario, Integer estado) {
+	public Operacion(Integer tipoOperacion, Calendar fOperacion, Double monto, String concepto, Usuario idUsuario,
+			Usuario idBeneficiario, Integer estado) {
 		super();
 		this.tipoOperacion = tipoOperacion;
 		this.fOperacion = fOperacion;

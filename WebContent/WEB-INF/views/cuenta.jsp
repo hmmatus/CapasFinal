@@ -20,12 +20,17 @@
 <form id="form1" method="post" action="${pageContext.request.contextPath}/transfeBenef" >
 	<button type="submit" class="btn btn-primary">Realizar transferencia</button>
 </form>
+<br>
 <form id="form2" method="post" action="${pageContext.request.contextPath}/estado" >
 	<button type="submit" class="btn btn-light">Estado de cuenta</button>
+	
 </form>
+<br>
 <form id="form3" method="post" action="${pageContext.request.contextPath}/pendienteTrans" >
-	<button type="submit" class="btn btn-light">Transferencias pendientes</button>
+	<button type="submit" class="btn btn-info">Transferencias pendientes</button>
+
 </form>
+<br>
 </div>
 </body>
 </html>

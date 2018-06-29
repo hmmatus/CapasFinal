@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.uca.capas.domain.Operacion;
+import com.uca.capas.domain.Usuario;
 
 public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	
@@ -19,6 +20,6 @@ public interface OperacionRepository extends JpaRepository<Operacion,Integer> {
 	public List<Operacion> findByfOperacionLessThan(Calendar fvenc);
 	
 	public List<Operacion> findByEstado(Integer num);
-	public List<Operacion> findByIdUsuario(Integer num);
+	public List<Operacion> findByIdUsuario(Usuario num);
 
 }

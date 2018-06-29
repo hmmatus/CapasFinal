@@ -161,7 +161,7 @@ public class MainController {
 			e1.printStackTrace();
 		}
 		Usuario beneficiario = usuarioRepository.findBynumCuenta(benef);
-		Operacion a = new Operacion(0,cal,mont,concepto,publico.getIdUsuario(),beneficiario.getIdUsuario(),0);
+		Operacion a = new Operacion(0,cal,mont,concepto,publico,beneficiario,0);
 		operacionRepository.save(a);
 		Double nuevoSaldo = publico.getSaldo() - Double.parseDouble(monto);
 		
@@ -185,7 +185,7 @@ public class MainController {
 	public ModelAndView estadoInit() {
 		ModelAndView mav=new ModelAndView();
 		mav.setViewName("estado_cuenta");
-		List<Operacion> operaciones=operacionRepo.findByIdUsuario(publico.getIdUsuario());
+		List<Operacion> operaciones=operacionRepo.findByIdUsuario(publico);
 		mav.addObject("ope",operaciones);
 		return mav;
 	}

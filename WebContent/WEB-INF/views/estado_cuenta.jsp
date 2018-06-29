@@ -69,8 +69,8 @@ $(document).ready(function () {
 						<td><c:out value="${ope.fechaOperacion}"></c:out></td>
 						<td><c:out value="${ope.monto}"></c:out></td>
 						<td><c:out value="${ope.concepto}"></c:out></td>
-						<td><c:out value="${ope.idUsuario}"></c:out></td>
-						<td><c:out value="${ope.idBeneficiario}"></c:out></td>
+						<td><c:out value="${ope.idUsuario.username}"></c:out></td>
+						<td><c:out value="${ope.idBeneficiario.username}"></c:out></td>
 						<td><c:out value="${ope.sEstado}"></c:out></td>
 					</tr>
 				</c:forEach>

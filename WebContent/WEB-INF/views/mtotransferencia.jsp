@@ -35,7 +35,7 @@ $(document).on('click', '#btn-aceptar', function(e) {
     	  if (result.value) {
     	    swal(
     	      'Confirmada!',
-    	      'Su transacción se ha realizado con éxito.',
+    	      'Su transaccion se ha realizado con exito.',
     	      'success'
     	    )
     	    $('#f-aceptar').submit();
@@ -54,7 +54,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
     
     swal({
     	  title: 'Esta seguro?',
-    	  text: "Una vez rechazada la transacci�n, no volverá a aparecer!",
+    	  text: "Una vez rechazada la transacci�n, no volvera a aparecer!",
     	  type: 'warning',
     	  showCancelButton: true,
     	  confirmButtonColor: '#3085d6',
@@ -64,7 +64,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
     	  if (result.value) {
     	    swal(
     	      'Rechazada!',
-    	      'La transacción ha sido rechazada.',
+    	      'La transaccion ha sido rechazada.',
     	      'success'
     	    )
     	    $('#f-rechazar').submit();
@@ -138,7 +138,7 @@ $(document).on('click', '#btn-rechazar', function(e) {
     </tbody>
   </table>
   
-  <form action="${pageContext.request.contextPath}/index">
+  <form action="${pageContext.request.contextPath}/cuenta">
         <input type="submit" class="btn btn-secondary " value="Regresar">
   
   </form>

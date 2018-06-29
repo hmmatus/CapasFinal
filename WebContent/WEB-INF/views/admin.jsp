@@ -7,7 +7,27 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="resources/css/bootstrap.css">
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/sweetalert2.js"></script>
 <title>Admin main</title>
+<script>
+function signOut(){
+	Swal({
+		  title: 'Are you sure?',
+		  text: "You won't be able to revert this!",
+		  type: 'warning',
+		  showCancelButton: true,
+		  confirmButtonColor: '#3085d6',
+		  cancelButtonColor: '#d33',
+		  confirmButtonText: 'Yes!'
+		}).then((result) => {
+		  if (result.value) {
+		    		$('#form4').submit();
+		    
+		  }
+		})
+	}
+</script>
 </head>
 <body>
 
@@ -63,5 +83,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
+	<form id="form4" method="post" action="${pageContext.request.contextPath}/index" >
+	<button type="button" class="btn btn-info" onclick="signOut()">Sign out</button>
 </body>
 </html>

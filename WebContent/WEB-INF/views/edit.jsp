@@ -54,6 +54,7 @@ $(document).ready(function(){
 		</div>
 		<br>
 		<input type="submit" id="btn-submit" class="btn btn-primary" value="Update">
+		<a class="btn btn-light" href="${pageContext.request.contextPath}/admin"> Cancelar</a>
 	</form:form>
 	</div>
 </body>

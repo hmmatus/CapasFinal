@@ -63,14 +63,6 @@ public class MainController {
 		Usuario u = usuarioRepository.findByUsernameAndPassword(user, pass);
 		if(a!=null) {
 			nvista="admin";
-			publico.setIdUsuario(u.getIdUsuario());
-			publico.setUsername(u.getUsername());
-			publico.setNomCompleto(u.getNomCompleto());
-			publico.setNumCuenta(u.getNumCuenta());
-			publico.setPassword(u.getPassword());
-			publico.setSaldo(u.getSaldo());
-			publico.setfCreacion(u.getfCreacion());
-			publico.setuEstado(u.getuEstado());
 		}
 		else if(u!=null) {
 			if(!u.getuEstado()) {

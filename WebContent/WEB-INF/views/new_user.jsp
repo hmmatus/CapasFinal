@@ -44,6 +44,7 @@ document.getElementById("demo").value = d;
 		</div>
 		<br>
 	<input type="submit" class="btn btn-primary" value="Create user">
+	<a class="btn btn-light" href="${pageContext.request.contextPath}/admin"> Cancelar</a>
 </form:form>
 </div>
 </body>
